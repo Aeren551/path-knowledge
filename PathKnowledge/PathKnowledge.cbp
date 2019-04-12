@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="PathKnowledge" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/PathKnowledge" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add library="sfml-graphics" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/PathKnowledge" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="cb.bmp" />
+		<Unit filename="include/Buttons.h" />
+		<Unit filename="include/Combate.h" />
+		<Unit filename="include/Enemy.h" />
+		<Unit filename="include/Estados.h" />
+		<Unit filename="include/Mapa.h" />
+		<Unit filename="include/Menu.h" />
+		<Unit filename="include/Nivel.h" />
+		<Unit filename="include/Player.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Buttons.cpp" />
+		<Unit filename="src/Combate.cpp" />
+		<Unit filename="src/Enemy.cpp" />
+		<Unit filename="src/Estados.cpp" />
+		<Unit filename="src/Mapa.cpp" />
+		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/Nivel.cpp" />
+		<Unit filename="src/Player.cpp" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
