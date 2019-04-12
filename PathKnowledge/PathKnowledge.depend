@@ -66,3 +66,70 @@
 	<SFML/Graphics.hpp>
 	"Player.h"
 
+1555059276 source:/home/aeren/git/SFML/PathKnowledge/main.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Player.h"
+	"Combate.h"
+	"Enemy.h"
+	"Buttons.h"
+
+1555059030 /home/aeren/git/SFML/PathKnowledge/include/Player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555059036 /home/aeren/git/SFML/PathKnowledge/include/Combate.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Player.h"
+	"Enemy.h"
+	"Buttons.h"
+
+1555059014 /home/aeren/git/SFML/PathKnowledge/include/Enemy.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555059022 /home/aeren/git/SFML/PathKnowledge/include/Buttons.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555059058 source:/home/aeren/git/SFML/PathKnowledge/src/Buttons.cpp
+	"Buttons.h"
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555059209 source:/home/aeren/git/SFML/PathKnowledge/src/Combate.cpp
+	"Combate.h"
+
+1555059074 source:/home/aeren/git/SFML/PathKnowledge/src/Enemy.cpp
+	"Enemy.h"
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555057105 source:/home/aeren/git/SFML/PathKnowledge/src/Estados.cpp
+	"Estados.h"
+
+1555057105 /home/aeren/git/SFML/PathKnowledge/include/Estados.h
+
+1555057046 source:/home/aeren/git/SFML/PathKnowledge/src/Mapa.cpp
+	"Mapa.h"
+
+1555057046 /home/aeren/git/SFML/PathKnowledge/include/Mapa.h
+
+1555058372 source:/home/aeren/git/SFML/PathKnowledge/src/Menu.cpp
+	"Menu.h"
+
+1555058447 /home/aeren/git/SFML/PathKnowledge/include/Menu.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1555057094 source:/home/aeren/git/SFML/PathKnowledge/src/Nivel.cpp
+	"Nivel.h"
+
+1555057094 /home/aeren/git/SFML/PathKnowledge/include/Nivel.h
+
+1555058996 source:/home/aeren/git/SFML/PathKnowledge/src/Player.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Player.h"
+

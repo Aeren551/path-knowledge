@@ -123,7 +123,7 @@ int Combate(sf::RenderWindow* window){
             else if(turno==3){
                 time = textti.getElapsedTime();
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                    text.setString("El examen te estresa");
+                    text.setString("Te Estresas");
                     player.updatE(10.f);
                     turno=4;
                     textti.restart();
