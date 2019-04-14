@@ -13,7 +13,7 @@ class Combate
     public:
         Combate();
         virtual ~Combate();
-        int start(sf::RenderWindow* window);
+        void start(sf::RenderWindow* window);
 
     protected:
 

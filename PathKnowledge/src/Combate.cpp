@@ -1,17 +1,14 @@
 #include "Combate.h"
 
+
 Combate::Combate()
 {
-    //ctor
-}
-
-int Combate::start(sf::RenderWindow* start){
-   /* sf::Clock textti;
-    sf::Clock clock;//Reloj de juego
+    /*
+    //=======================ORDENAR ESTO CON EL .H=====================
+    sf::Clock textti;
     sf::Time time = textti.getElapsedTime();
     int turno=0;
     //Creamos una ventana
-    sf::RenderWindow window(sf::VideoMode(640, 480), "Combate por turnos");
     sf::Font font;
     sf::Text text;
     sf::Text hp;
@@ -39,124 +36,106 @@ int Combate::start(sf::RenderWindow* start){
     hp.setString("Est.");
     exp.setString("Con.");
 
+}
 
-
-    //Bucle del juego
-    while (window.isOpen())
+void Combate::start(sf::RenderWindow* start)
+{
+    if(turno==0)
     {
-        sf::Event event;
-        while (window.pollEvent(event))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+            buttons.cursor(-1);
+
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            buttons.cursor(1);
+
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            window->close();
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && turno==0)
         {
-            if(clock.getElapsedTime().asMilliseconds() > UPDATE_TICK_TIME)
-        {
-            if(turno==0){
-            if(sf::Event::Closed)
-                return 0;
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            int act = buttons.getOption();
+            switch(act)
             {
-
-            }
-
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            {
-
-            }
-
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            {
-                buttons.cursor(-1);
-            }
-
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            {
-                buttons.cursor(1);
-            }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-                window.close();
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-                window.close();
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && turno==0){
-                int act = buttons.getOption();
-               switch(act){
-                    case 1:
-                        text.setString("Has atacado");
-                        player.updatC(5.f);
-                        textti.restart();
-                        turno=3;
-                        buttons.changeTurn();
-                        break;
-                    case 2:
-                        text.setString("Has usado Skill");
-                        textti.restart();
-                        turno=2;
-                        buttons.changeTurn();
-                        break;
-                    case 3:
-                        text.setString("Has usado Items");
-                        player.updatE(-20.f);
-                        textti.restart();
-                        turno=3;
-                        buttons.changeTurn();
-                        break;
-                    case 4:
-                        text.setString("Has usado Flee");
-                        textti.restart();
-                        turno=3;
-                        buttons.changeTurn();
-                        return 0;
-                        break;
-                }
-                }
-            }
-           else if(turno==2){
-                time = textti.getElapsedTime();
-                text.setString("Menu Skills");
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+                case 1:
+                    text.setString("Has atacado");
+                    player.updatC(5.f);
+                    textti.restart();
                     turno=3;
-                    textti.restart();
-                }
-
-            }
-            else if(turno==3){
-                time = textti.getElapsedTime();
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                    text.setString("El examen te estresa");
-                    player.updatE(10.f);
-                    turno=4;
-                    textti.restart();
-                }
-
-            }
-            else if(turno==4){
-                time = textti.getElapsedTime();
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                    text.setString("");
                     buttons.changeTurn();
-                    turno=0;
-                    textti.restart();
-                }
+                break;
 
+                case 2:
+                    text.setString("Has usado Skill");
+                    textti.restart();
+                    turno=2;
+                    buttons.changeTurn();
+                break;
+
+                case 3:
+                    text.setString("Has usado Items");
+                    player.updatE(-20.f);
+                    textti.restart();
+                    turno=3;
+                    buttons.changeTurn();
+                break;
+
+                case 4:
+                    text.setString("Has usado Flee");
+                    textti.restart();
+                    estado->setEstado(1);
+                break;
             }
         }
-        clock.restart();
-
-        }
-        window.clear();
+    }
+    else if(turno==2)
+    {
         time = textti.getElapsedTime();
-        if(turno==0)
-            text.setString("");
-        player->draw(window);
-        enemy->draw(window);
-        window->draw(text);
-        window->draw(hp);
-        window->draw(exp);
-        if(buttons.getTurn()){
-            buttons->draw(window);
+        text.setString("Menu Skills");
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        {
+            turno=3;
+            textti.restart();
         }
-        window->display();
-    }*/
+    }
+    else if(turno==3)
+    {
+        time = textti.getElapsedTime();
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        {
+            text.setString("Te Estresas");
+            player.updatE(10.f);
+            turno=4;
+            textti.restart();
+        }
+    }
+    else if(turno==4)
+    {
+        time = textti.getElapsedTime();
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        {
+            text.setString("");
+            buttons.changeTurn();
+            turno=0;
+            textti.restart();
+        }
+    }
 
-    return 0;
+    //ESTO ES EL RENDER DE COMBATE
+    window->clear();
+    time = textti.getElapsedTime();
+    if(turno==0)
+        text.setString("");
+
+    player.draw(window);
+    enemy.draw(window);
+    window->draw(text);
+    window->draw(hp);
+    window->draw(exp);
+    if(buttons.getTurn())
+        buttons.draw(window);
+
+    window->display();
+    */
 }
 
 
