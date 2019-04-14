@@ -1,0 +1,9 @@
+
+PathKnowledge
+PathKnowledge.exe
+
+PathKnowledge/obj/
+PathKnowledge/obj/Debug/*.o
+PathKnowledge/obj/Debug/src/*.o
+
+*.depend
