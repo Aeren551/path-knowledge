@@ -50,7 +50,11 @@
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Nivel.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/tinyxml2.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="resources/Overworld.png" />
+		<Unit filename="resources/character.png" />
+		<Unit filename="resources/prueba1.tmx" />
 		<Unit filename="src/Buttons.cpp" />
 		<Unit filename="src/Combate.cpp" />
 		<Unit filename="src/Enemy.cpp" />
@@ -59,6 +63,7 @@
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Nivel.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="tinyxml2.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />

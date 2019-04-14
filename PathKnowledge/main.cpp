@@ -4,6 +4,7 @@
 #include "Combate.h"
 #include "Enemy.h"
 #include "Buttons.h"
+#include "Mapa.h"
 
 using namespace std;
 
@@ -174,6 +175,11 @@ int main()
     sf::Event event;
     //Reloj del juego
     sf::Clock clock;
+    //maquina de estados (0 menu principal)
+    int estado = 1;
+
+    Mapa * mapa = Mapa::Instance();
+    mapa->leerTMX();
 
 	// Start the game loop
     while (window->isOpen())
@@ -190,14 +196,37 @@ int main()
 
         if(clock.getElapsedTime().asMilliseconds() > UPDATE_TICK_TIME)
         {
-            if(true){
-                Combate(window);
+            switch (estado)
+            {
+                case 0:
+                //MENU INICIO
+                break;
+
+                case 1:
+                //EN JUEGO
+                window->clear();
+                mapa->setActiveLayer(0);
+                mapa->render(window);
+                mapa->setActiveLayer(1);
+                mapa->render(window);
+
+                //PERSONAJE
+
+                mapa->setActiveLayer(2);
+                mapa->render(window);
+                mapa->setActiveLayer(3);
+                mapa->render(window);
+                window->display();
+
+                break;
+
+                case 2:
+                //COMBATE
+                    Combate(window);
+                break;
             }
             clock.restart();
         }
-
-        window->clear();
-        window->display();
     }
 
     return EXIT_SUCCESS;
