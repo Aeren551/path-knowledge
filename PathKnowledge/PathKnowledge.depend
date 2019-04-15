@@ -66,7 +66,7 @@
 	<SFML/Graphics.hpp>
 	"Player.h"
 
-1555327367 source:/home/aeren/git/SFML/PathKnowledge/main.cpp
+1555316042 source:/home/aeren/git/SFML/PathKnowledge/main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Player.h"
@@ -76,17 +76,16 @@
 	"Mapa.h"
 	"Estados.h"
 
-1555322164 /home/aeren/git/SFML/PathKnowledge/include/Player.h
+1555059030 /home/aeren/git/SFML/PathKnowledge/include/Player.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1555327384 /home/aeren/git/SFML/PathKnowledge/include/Combate.h
+1555316042 /home/aeren/git/SFML/PathKnowledge/include/Combate.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Player.h"
 	"Enemy.h"
 	"Buttons.h"
-	"Estados.h"
 
 1555059014 /home/aeren/git/SFML/PathKnowledge/include/Enemy.h
 	<iostream>
@@ -101,7 +100,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1555327479 source:/home/aeren/git/SFML/PathKnowledge/src/Combate.cpp
+1555316042 source:/home/aeren/git/SFML/PathKnowledge/src/Combate.cpp
 	"Combate.h"
 
 1555059074 source:/home/aeren/git/SFML/PathKnowledge/src/Enemy.cpp
@@ -114,11 +113,8 @@
 
 1555316042 /home/aeren/git/SFML/PathKnowledge/include/Estados.h
 
-1555316597 source:/home/aeren/git/SFML/PathKnowledge/src/Mapa.cpp
+1555057046 source:/home/aeren/git/SFML/PathKnowledge/src/Mapa.cpp
 	"Mapa.h"
-	<SFML/Graphics.hpp>
-	<iostream>
-	<stdlib.h>
 
 1555316042 /home/aeren/git/SFML/PathKnowledge/include/Mapa.h
 	"tinyxml2.h"
@@ -136,8 +132,9 @@
 
 1555057094 /home/aeren/git/SFML/PathKnowledge/include/Nivel.h
 
-1555322184 source:/home/aeren/git/SFML/PathKnowledge/src/Player.cpp
+1555058996 source:/home/aeren/git/SFML/PathKnowledge/src/Player.cpp
 	<iostream>
+	<SFML/Graphics.hpp>
 	"Player.h"
 
 1555314697 /home/aeren/git/SFML/PathKnowledge/include/tinyxml2.h
@@ -157,6 +154,202 @@
 	<assert.h>
 
 1555314697 source:/home/aeren/git/SFML/PathKnowledge/tinyxml2.cpp
+	"include/tinyxml2.h"
+	<new>
+	<stddef.h>
+	<stdarg.h>
+	<cstddef>
+	<cstdarg>
+
+1555325774 source:/home/gtp6/git/testing/PathKnowledge/src/Buttons.cpp
+	"Buttons.h"
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 /home/gtp6/git/testing/PathKnowledge/include/Buttons.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 source:/home/gtp6/git/testing/PathKnowledge/src/Combate.cpp
+	"Combate.h"
+
+1555325774 /home/gtp6/git/testing/PathKnowledge/include/Combate.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Player.h"
+	"Enemy.h"
+	"Buttons.h"
+
+1555342035 /home/gtp6/git/testing/PathKnowledge/include/Player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 /home/gtp6/git/testing/PathKnowledge/include/Enemy.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 source:/home/gtp6/git/testing/PathKnowledge/src/Enemy.cpp
+	"Enemy.h"
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 source:/home/gtp6/git/testing/PathKnowledge/src/Estados.cpp
+	"Estados.h"
+
+1555325774 /home/gtp6/git/testing/PathKnowledge/include/Estados.h
+
+1555325774 source:/home/gtp6/git/testing/PathKnowledge/src/Mapa.cpp
+	"Mapa.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<stdlib.h>
+
+1555325774 /home/gtp6/git/testing/PathKnowledge/include/Mapa.h
+	"tinyxml2.h"
+	<SFML/Graphics.hpp>
+
+1555325774 /home/gtp6/git/testing/PathKnowledge/include/tinyxml2.h
+	<ctype.h>
+	<limits.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stddef.h>
+	<cctype>
+	<climits>
+	<cstdio>
+	<cstdlib>
+	<cstring>
+	<stdint.h>
+	<android/log.h>
+	<assert.h>
+
+1555325774 source:/home/gtp6/git/testing/PathKnowledge/src/Menu.cpp
+	"Menu.h"
+
+1555325774 /home/gtp6/git/testing/PathKnowledge/include/Menu.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1555325774 source:/home/gtp6/git/testing/PathKnowledge/src/Nivel.cpp
+	"Nivel.h"
+
+1555325774 /home/gtp6/git/testing/PathKnowledge/include/Nivel.h
+
+1555325774 source:/home/gtp6/git/testing/PathKnowledge/src/Player.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Player.h"
+
+1555325774 source:/home/gtp6/git/testing/PathKnowledge/tinyxml2.cpp
+	"include/tinyxml2.h"
+	<new>
+	<stddef.h>
+	<stdarg.h>
+	<cstddef>
+	<cstdarg>
+
+1555345516 source:/home/gtp6/git/testing/PathKnowledge/main.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Player.h"
+	"Combate.h"
+	"Enemy.h"
+	"Buttons.h"
+	"Mapa.h"
+	"Estados.h"
+
+1555347096 source:/home/aeren/Escritorio/PathKnowledge/main.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Player.h"
+	"Combate.h"
+	"Enemy.h"
+	"Buttons.h"
+	"Mapa.h"
+	"Estados.h"
+
+1555342036 /home/aeren/Escritorio/PathKnowledge/include/Player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 /home/aeren/Escritorio/PathKnowledge/include/Combate.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Player.h"
+	"Enemy.h"
+	"Buttons.h"
+
+1555325774 /home/aeren/Escritorio/PathKnowledge/include/Enemy.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 /home/aeren/Escritorio/PathKnowledge/include/Buttons.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 /home/aeren/Escritorio/PathKnowledge/include/Mapa.h
+	"tinyxml2.h"
+	<SFML/Graphics.hpp>
+
+1555325774 /home/aeren/Escritorio/PathKnowledge/include/tinyxml2.h
+	<ctype.h>
+	<limits.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stddef.h>
+	<cctype>
+	<climits>
+	<cstdio>
+	<cstdlib>
+	<cstring>
+	<stdint.h>
+	<android/log.h>
+	<assert.h>
+
+1555325774 /home/aeren/Escritorio/PathKnowledge/include/Estados.h
+
+1555325774 source:/home/aeren/Escritorio/PathKnowledge/src/Buttons.cpp
+	"Buttons.h"
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 source:/home/aeren/Escritorio/PathKnowledge/src/Combate.cpp
+	"Combate.h"
+
+1555325774 source:/home/aeren/Escritorio/PathKnowledge/src/Enemy.cpp
+	"Enemy.h"
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1555325774 source:/home/aeren/Escritorio/PathKnowledge/src/Estados.cpp
+	"Estados.h"
+
+1555325774 source:/home/aeren/Escritorio/PathKnowledge/src/Mapa.cpp
+	"Mapa.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<stdlib.h>
+
+1555325774 source:/home/aeren/Escritorio/PathKnowledge/src/Menu.cpp
+	"Menu.h"
+
+1555325774 /home/aeren/Escritorio/PathKnowledge/include/Menu.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1555325774 source:/home/aeren/Escritorio/PathKnowledge/src/Nivel.cpp
+	"Nivel.h"
+
+1555325774 /home/aeren/Escritorio/PathKnowledge/include/Nivel.h
+
+1555325774 source:/home/aeren/Escritorio/PathKnowledge/src/Player.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Player.h"
+
+1555325774 source:/home/aeren/Escritorio/PathKnowledge/tinyxml2.cpp
 	"include/tinyxml2.h"
 	<new>
 	<stddef.h>
