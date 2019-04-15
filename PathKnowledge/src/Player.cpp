@@ -1,5 +1,4 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include "Player.h"
 
 Player::Player(sf::Vector2f size){
