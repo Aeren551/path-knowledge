@@ -282,31 +282,3 @@ void Mapa::render(sf::RenderWindow *w)
         }
     }
 }
-// para personaje
-int Mapa::getTileWidth()
-{
-    return _tileWidth;
-}
-int Mapa::getTileHeight()
-{
-    return _tileHeight;
-}
-int Mapa::getTilemap (int l, int x, int y)
-{
-    return _tilemap[l][y][x];
-}
-
-bool Mapa::colision (int x, int y)
-{
-    // primero miramos los bordes exteriores
-    if (x<1 || x>=_width-1)
-        return true;
-    if (y<1 || y>=_height-1)
-        return true;
-    // comprobar la capa de las calaveras
-    if (_tilemap[5][y-1][x] == 1323)
-        return true;
-
-    return false;
-}
-
