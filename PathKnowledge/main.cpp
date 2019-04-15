@@ -187,7 +187,7 @@ int main()
     exp.setColor(sf::Color::Blue);
     text.setCharacterSize(25);
     text.setPosition(200,100);
-    Player player(sf::Vector2f(75,75));//Cambiar por Sprite
+    Player player(sf::Vector2f(75,75),0,0);//Cambiar por Sprite
     Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
     Buttons buttons(sf::Vector2f(90,125));
     player.setPosition(100,200);
@@ -220,6 +220,11 @@ int main()
     //maquina de estados (0 menu principal)
     Estados * estado = Estados::Instance();
 
+    //creamos personaje
+    // boorrar el vector mas adelante
+    Player* jugador = new Player(sf::Vector2f(5,5),304.0,288.0);
+    float percentTick = 0;
+
     Mapa * mapa = Mapa::Instance();
     mapa->leerTMX();
 
@@ -238,6 +243,7 @@ int main()
 
         if(clock.getElapsedTime().asMilliseconds() > UPDATE_TICK_TIME)
         {
+            sf::Vector2i* coord = jugador->getCoordenadas();
             switch (estado->getEstado())
             {
                 case 0:
@@ -252,15 +258,33 @@ int main()
                 mapa->setActiveLayer(1);
                 mapa->render(window);
 
+
+
                 //PERSONAJE
+
+                //movimiento
+                jugador->eventos(event.key.code);
+                jugador->actualizarPos(clock.getElapsedTime().asMilliseconds());
+                jugador->setCoordenadas(mapa->getTileWidth(), mapa->getTileHeight());
+
+                if(mapa->colision(jugador->getCoordenadas()->x, jugador->getCoordenadas()->y))
+                {
+                    jugador->colisionMapa();
+                    jugador->setCoordenadas(mapa->getTileWidth(), mapa->getTileHeight());
+                }
+
+
+
+                jugador->interpolar(percentTick);
 
                 mapa->setActiveLayer(2);
                 mapa->render(window);
+                jugador->render(window);
                 mapa->setActiveLayer(3);
                 mapa->render(window);
                 window->display();
 
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::C))
                 {
                     estado->setEstado(2);
                 }
@@ -367,7 +391,11 @@ int main()
             }
             clock.restart();
         }
+         percentTick = clock.getElapsedTime().asMilliseconds()/UPDATE_TICK_TIME;
+                        if (percentTick > 1.0f)
+                            percentTick = 1.0f;
     }
+
 
     return EXIT_SUCCESS;
 }
