@@ -67,7 +67,7 @@ Mapa::~Mapa()
 
 void Mapa::leerTMX()
 {
-    if(doc.LoadFile("resources/prueba1.tmx") != 0)
+    if(doc.LoadFile("resources/nivel_01.tmx") != 0)
         cout<<"No existe fichero .tmx"<<endl;
 
     //Tamaño del mapa y de los tiles
