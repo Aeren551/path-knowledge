@@ -15,6 +15,12 @@ class Mapa //SINGLETON
         void setActiveLayer(int layer);
         virtual ~Mapa();
 
+        //para el personaje
+         int getTileWidth();
+        int getTileHeight();
+        int getTilemap(int l, int x, int y);
+        bool colision (int x, int y);
+
     protected:
         Mapa();
         Mapa(const Mapa & );
