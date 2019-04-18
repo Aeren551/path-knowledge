@@ -6,6 +6,7 @@
 #include "Buttons.h"
 #include "Mapa.h"
 #include "Estados.h"
+#include "Menu.h"
 
 using namespace std;
 
@@ -19,12 +20,6 @@ int main()
     Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
     //=======================================================
 
-
-
-
-
-
-
     // Create the main window
     sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(640, 480), "Path of Knowledge");
     window->setFramerateLimit(60);
@@ -35,6 +30,7 @@ int main()
     //Reloj del juego
     sf::Clock clock;
     Combate* combate = new Combate(player,enemy);
+    Menu* menu = new Menu();
     //maquina de estados (0 menu principal)
     Estados * estado = Estados::Instance();
 
@@ -60,7 +56,10 @@ int main()
             if (event.type == sf::Event::Closed)
                     window->close();
             if (event.type == sf::Event::KeyPressed && event.key.code== sf::Keyboard::Escape)
-                window->close();
+            {
+                // para evitar que se cierre, escape tiene que llevar al menu pause
+                //window->close();
+            }
 
         }
 
@@ -71,10 +70,15 @@ int main()
             {
                 case 0:
                 //MENU INICIO
+                menu->menuInicio(window);
                 break;
 
                 case 1:
                 //EN JUEGO
+
+
+
+
                 window->clear();
 
                 //se mantiene la vista centrada en el personaje
@@ -119,6 +123,13 @@ int main()
                     estado->setEstado(2);
                     window->setView(battle);
                 }
+                // MENU PAUSE
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+                {
+                    //std::cout << "entrar en el menu pause" << std::endl;
+                    estado->setEstado(3);
+                    window->setView(battle);
+                }
 
                 break;
 
@@ -126,12 +137,15 @@ int main()
                 combate->start(window);
                 //combate->render(window);
                 break;
+                case 3:
+                menu->menuPause(window);
+                break;
             }
          clock.restart();
         }
-         percentTick = clock.getElapsedTime().asMilliseconds()/UPDATE_TICK_TIME;
-                        if (percentTick > 1.0f)
-                            percentTick = 1.0f;
+        percentTick = clock.getElapsedTime().asMilliseconds()/UPDATE_TICK_TIME;
+        if (percentTick > 1.0f)
+            percentTick = 1.0f;
     }
 
 
