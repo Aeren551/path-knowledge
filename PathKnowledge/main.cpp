@@ -10,196 +10,13 @@
 using namespace std;
 
 #define UPDATE_TICK_TIME 1000/15
-
-
-/*int Combate(sf::RenderWindow* window){
-
-    Estados * estado = Estados::Instance();
-
-    sf::Clock textti;
-    sf::Clock clock;//Reloj de juego
-    sf::Time time = textti.getElapsedTime();
-    int turno=0;
-    //Creamos una ventana
-    sf::Font font;
-    sf::Text text;
-    sf::Text hp;
-    sf::Text exp;
-    font.loadFromFile("Pixeled.ttf");
-    text.setFont(font);
-    hp.setFont(font);
-    exp.setFont(font);
-    text.setColor(sf::Color::White);
-    hp.setColor(sf::Color::Red);
-    exp.setColor(sf::Color::Blue);
-    text.setCharacterSize(25);
-    text.setPosition(200,100);
-    Player player(sf::Vector2f(75,75));//Cambiar por Sprite
-    Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
-    Buttons buttons(sf::Vector2f(90,125));
-    player.setPosition(100,200);
-    enemy.setPosition(480,187);
-    player.setPositionE(50,100);
-    hp.setPosition(5,100);
-    hp.setCharacterSize(10);
-    player.setPositionC(50,150);
-    exp.setPosition(5,150);
-    exp.setCharacterSize(10);
-    hp.setString("Est.");
-    exp.setString("Con.");
-
-    //Bucle del juego
-    while (window->isOpen())
-    {
-        sf::Event event;
-        while (window->pollEvent(event))
-        {
-            if(clock.getElapsedTime().asMilliseconds() > UPDATE_TICK_TIME)
-        {
-            if(turno==0){
-            if(sf::Event::Closed)
-                window->close();
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            {
-
-            }
-
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            {
-
-            }
-
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            {
-                buttons.cursor(-1);
-            }
-
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            {
-                buttons.cursor(1);
-            }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-                window->close();
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-                window->close();
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && turno==0){
-                int act = buttons.getOption();
-               switch(act){
-                    case 1:
-                        text.setString("Has atacado");
-                        player.updatC(5.f);
-                        textti.restart();
-                        turno=3;
-                        buttons.changeTurn();
-                        break;
-                    case 2:
-                        text.setString("Has usado Skill");
-                        textti.restart();
-                        turno=2;
-                        buttons.changeTurn();
-                        break;
-                    case 3:
-                        text.setString("Has usado Items");
-                        player.updatE(-20.f);
-                        textti.restart();
-                        turno=3;
-                        buttons.changeTurn();
-                        break;
-                    case 4:
-                        text.setString("Has usado Flee");
-                        textti.restart();
-                        estado->setEstado(1);
-                        turno=3;
-                        buttons.changeTurn();
-                        break;
-                }
-                }
-            }
-           else if(turno==2){
-                time = textti.getElapsedTime();
-                text.setString("Menu Skills");
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                    turno=3;
-                    textti.restart();
-                }
-
-            }
-            else if(turno==3){
-                time = textti.getElapsedTime();
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                    text.setString("Te Estresas");
-                    player.updatE(10.f);
-                    turno=4;
-                    textti.restart();
-                }
-
-            }
-            else if(turno==4){
-                time = textti.getElapsedTime();
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                    text.setString("");
-                    buttons.changeTurn();
-                    turno=0;
-                    textti.restart();
-                }
-
-            }
-        }
-        clock.restart();
-
-        }
-        window->clear();
-        time = textti.getElapsedTime();
-        if(turno==0)
-            text.setString("");
-        player.draw(window);
-        enemy.draw(window);
-        window->draw(text);
-        window->draw(hp);
-        window->draw(exp);
-        if(buttons.getTurn()){
-            buttons.draw(window);
-        }
-        window->display();
-    }
-
-    return 0;
-}
-*/
 int main()
 {
 
     //=============ESTO HAY QUE BORRARLO DE AQUI=============
-    sf::Clock textti;
-    sf::Time time = textti.getElapsedTime();
-    int turno=0;
     //Creamos una ventana
-    sf::Font font;
-    sf::Text text;
-    sf::Text hp;
-    sf::Text exp;
-    font.loadFromFile("Pixeled.ttf");
-    text.setFont(font);
-    hp.setFont(font);
-    exp.setFont(font);
-    text.setColor(sf::Color::White);
-    hp.setColor(sf::Color::Red);
-    exp.setColor(sf::Color::Blue);
-    text.setCharacterSize(25);
-    text.setPosition(200,100);
     Player player(sf::Vector2f(75,75),0,0);//Cambiar por Sprite
     Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
-    Buttons buttons(sf::Vector2f(90,125));
-    player.setPosition(100,200);
-    enemy.setPosition(480,187);
-    player.setPositionE(50,100);
-    hp.setPosition(5,100);
-    hp.setCharacterSize(10);
-    player.setPositionC(50,150);
-    exp.setPosition(5,150);
-    exp.setCharacterSize(10);
-    hp.setString("Est.");
-    exp.setString("Con.");
     //=======================================================
 
 
@@ -217,16 +34,22 @@ int main()
     sf::Event event;
     //Reloj del juego
     sf::Clock clock;
+    Combate* combate = new Combate(player,enemy);
     //maquina de estados (0 menu principal)
     Estados * estado = Estados::Instance();
 
     //creamos personaje
     // boorrar el vector mas adelante
     Player* jugador = new Player(sf::Vector2f(5,5),304.0,288.0);
-    float percentTick = 0;
+    float percentTick = 1000/15;
 
     Mapa * mapa = Mapa::Instance();
     mapa->leerTMX();
+
+    // creacion de la vista del personaje con el zoom
+    sf::View player_view(sf::FloatRect(0, 0, window->getSize().x, window->getSize().y));
+    sf::View battle(sf::FloatRect(0, 0, window->getSize().x, window->getSize().y));
+    player_view.zoom(0.5f);
 
 	// Start the game loop
     while (window->isOpen())
@@ -253,6 +76,11 @@ int main()
                 case 1:
                 //EN JUEGO
                 window->clear();
+
+                //se mantiene la vista centrada en el personaje
+                player_view.setCenter(coord->x*16,coord->y*16);
+                window->setView(player_view);
+
                 mapa->setActiveLayer(0);
                 mapa->render(window);
                 mapa->setActiveLayer(1);
@@ -277,6 +105,8 @@ int main()
 
                 jugador->interpolar(percentTick);
 
+
+
                 mapa->setActiveLayer(2);
                 mapa->render(window);
                 jugador->render(window);
@@ -287,109 +117,17 @@ int main()
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::C))
                 {
                     estado->setEstado(2);
+                    window->setView(battle);
                 }
 
                 break;
 
                 case 2:
-                //COMBATE
-
-                //================================BORRAR DE AQUI================
-                    if(turno==0)
-                    {
-                        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-                        {
-                            buttons.cursor(-1);
-                        }
-
-                        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-                        {
-                            buttons.cursor(1);
-                        }
-                        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-                            window->close();
-
-                        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && turno==0)
-                        {
-                            int act = buttons.getOption();
-                            switch(act){
-                                case 1:
-                                    text.setString("Has atacado");
-                                    player.updatC(5.f);
-                                    textti.restart();
-                                    turno=3;
-                                    buttons.changeTurn();
-                                break;
-                                case 2:
-                                    text.setString("Has usado Skill");
-                                    textti.restart();
-                                    turno=2;
-                                    buttons.changeTurn();
-                                break;
-                                case 3:
-                                    text.setString("Has usado Items");
-                                    player.updatE(-20.f);
-                                    textti.restart();
-                                    turno=3;
-                                    buttons.changeTurn();
-                                break;
-                                case 4:
-                                    text.setString("Has usado Flee");
-                                    textti.restart();
-                                    estado->setEstado(1);
-                                break;
-                                }
-                            }
-                        }
-                       else if(turno==2){
-                            time = textti.getElapsedTime();
-                            text.setString("Menu Skills");
-                            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                                turno=3;
-                                textti.restart();
-                            }
-
-                        }
-                        else if(turno==3){
-                            time = textti.getElapsedTime();
-                            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                                text.setString("Te Estresas");
-                                player.updatE(10.f);
-                                turno=4;
-                                textti.restart();
-                            }
-
-                        }
-                        else if(turno==4){
-                            time = textti.getElapsedTime();
-                            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                                text.setString("");
-                                buttons.changeTurn();
-                                turno=0;
-                                textti.restart();
-                            }
-
-                        }
-
-                    //ESTO ES EL RENDER DE COMBATE
-                    window->clear();
-                    time = textti.getElapsedTime();
-                    if(turno==0)
-                        text.setString("");
-                    player.draw(window);
-                    enemy.draw(window);
-                    window->draw(text);
-                    window->draw(hp);
-                    window->draw(exp);
-                    if(buttons.getTurn()){
-                        buttons.draw(window);
-                    }
-                    window->display();
-
-                //==============================================================
+                combate->start(window);
+                //combate->render(window);
                 break;
             }
-            clock.restart();
+         clock.restart();
         }
          percentTick = clock.getElapsedTime().asMilliseconds()/UPDATE_TICK_TIME;
                         if (percentTick > 1.0f)
