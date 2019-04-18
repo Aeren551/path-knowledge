@@ -65,7 +65,6 @@ int main()
 
         if(clock.getElapsedTime().asMilliseconds() > UPDATE_TICK_TIME)
         {
-            sf::Vector2i* coord = jugador->getCoordenadas();
             switch (estado->getEstado())
             {
                 case 0:
@@ -76,13 +75,10 @@ int main()
                 case 1:
                 //EN JUEGO
 
-
-
-
                 window->clear();
 
                 //se mantiene la vista centrada en el personaje
-                player_view.setCenter(coord->x*16,coord->y*16);
+                player_view.setCenter(jugador->getPosition()->x, jugador->getPosition()->y);
                 window->setView(player_view);
 
                 mapa->setActiveLayer(0);
