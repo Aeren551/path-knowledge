@@ -10,7 +10,7 @@
 class Player
 {
     public:
-        Player(sf::Vector2f size, float x, float y);
+        Player(float x, float y);
         virtual ~Player();//
         void draw(sf::RenderWindow* window);
         void setPosition(int x, int y);
@@ -29,6 +29,8 @@ class Player
         sf::Vector2f* getPosition();
         void setCoordenadas (int width, int height);
         void colisionMapa ();
+        void combatAnim();
+        int getCombat();
 
     protected:
         sf::Vector2f    posicion;       // hacia donde se dirige (INTERPOLACION)
@@ -43,7 +45,7 @@ class Player
         sf::Sprite*     sprite;
 
     private:
-        sf::RectangleShape player;
+        sf::Sprite* player;
         sf::RectangleShape estres;
         sf::RectangleShape bordere;
         float vale;
@@ -52,6 +54,7 @@ class Player
         sf::RectangleShape borderc;
         float valc;
         float valcm;
+        int animCombat=0;
 };
 
 #endif // PLAYER_H

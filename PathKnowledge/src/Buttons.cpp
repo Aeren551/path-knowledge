@@ -15,41 +15,41 @@ Buttons::Buttons(sf::Vector2f size)
     attack.setOutlineThickness(1);
     attack.setFillColor(sf::Color::Transparent);
     attack.setOutlineColor(sf::Color::Red);
-    attack.setPosition(80,400);
+    attack.setPosition(80,600);
     text[0].setString("Atk.");
-    text[0].setCharacterSize(18);
+    text[0].setCharacterSize(20);
     text[0].setColor(sf::Color::White);
-    text[0].setPosition(85,430);
+    text[0].setPosition(85,640);
 
     skill.setSize(size);
     skill.setOutlineThickness(1);
     skill.setFillColor(sf::Color::Transparent);
     skill.setOutlineColor(sf::Color::White);
-    skill.setPosition(190,400);
+    skill.setPosition(225,600);
     text[1].setString("Skill");
-    text[1].setCharacterSize(18);
+    text[1].setCharacterSize(20);
     text[1].setColor(sf::Color::White);
-    text[1].setPosition(195,430);
+    text[1].setPosition(230,640);
 
     items.setSize(size);
     items.setOutlineThickness(1);
     items.setFillColor(sf::Color::Transparent);
     items.setOutlineColor(sf::Color::White);
-    items.setPosition(300,400);
+    items.setPosition(375,600);
     text[2].setString("Items");
-    text[2].setCharacterSize(18);
+    text[2].setCharacterSize(20);
     text[2].setColor(sf::Color::White);
-    text[2].setPosition(305,430);
+    text[2].setPosition(380,640);
 
     flee.setSize(size);
     flee.setOutlineThickness(1);
     flee.setFillColor(sf::Color::Transparent);
     flee.setOutlineColor(sf::Color::White);
-    flee.setPosition(410,400);
+    flee.setPosition(525,600);
     text[3].setString("Flee");
-    text[3].setCharacterSize(18);
+    text[3].setCharacterSize(20);
     text[3].setColor(sf::Color::White);
-    text[3].setPosition(415,430);
+    text[3].setPosition(530,640);
 }
 
 void Buttons::draw(sf::RenderWindow* window){

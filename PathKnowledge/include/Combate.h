@@ -27,6 +27,7 @@ class Combate
         sf::Text text;
         sf::Text hp;
         sf::Text exp;
+        int anima=0;
 };
 
 #endif // COMBATE_H

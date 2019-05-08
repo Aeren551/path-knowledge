@@ -16,12 +16,12 @@ int main()
 
     //=============ESTO HAY QUE BORRARLO DE AQUI=============
     //Creamos una ventana
-    Player player(sf::Vector2f(75,75),0,0);//Cambiar por Sprite
+    Player player(0,0);//Cambiar por Sprite
     Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
     //=======================================================
 
     // Create the main window
-    sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(640, 480), "Path of Knowledge");
+    sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1080, 720), "Path of Knowledge");
     window->setFramerateLimit(60);
     //Player player();
 
@@ -36,7 +36,7 @@ int main()
 
     //creamos personaje
     // boorrar el vector mas adelante
-    Player* jugador = new Player(sf::Vector2f(5,5),304.0,288.0);
+    Player* jugador = new Player(304.0,288.0);
     float percentTick = 1000/15;
 
     Mapa * mapa = Mapa::Instance();
@@ -45,7 +45,7 @@ int main()
     // creacion de la vista del personaje con el zoom
     sf::View player_view(sf::FloatRect(0, 0, window->getSize().x, window->getSize().y));
     sf::View battle(sf::FloatRect(0, 0, window->getSize().x, window->getSize().y));
-    player_view.zoom(0.5f);
+    player_view.zoom(0.4f);
 
 	// Start the game loop
     while (window->isOpen())

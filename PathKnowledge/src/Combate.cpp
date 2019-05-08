@@ -3,16 +3,12 @@
 #define UPDATE_TICK_TIME 1000/15
 
 
-Combate::Combate(Player p, Enemy e):player(p),enemy(e),buttons(sf::Vector2f(90,125))
+Combate::Combate(Player p, Enemy e):player(p),enemy(e),buttons(sf::Vector2f(125,125))
 {
 
     //=======================ORDENAR ESTO CON EL .H=====================
     int turno=0;
     //Creamos una ventana
-    sf::Font font;
-    sf::Text text;
-    sf::Text hp;
-    sf::Text exp;
     font.loadFromFile("Pixeled.ttf");
     text.setFont(font);
     hp.setFont(font);
@@ -24,7 +20,7 @@ Combate::Combate(Player p, Enemy e):player(p),enemy(e),buttons(sf::Vector2f(90,1
     text.setPosition(200,100);
     //player(sf::Vector2f(75,75));//Cambiar por Sprite
     //Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
-    player.setPosition(100,200);
+    player.setPosition(200,500);
     enemy.setPosition(480,187);
     player.setPositionE(50,100);
     hp.setPosition(5,100);
@@ -78,6 +74,8 @@ void Combate::start(sf::RenderWindow* window)
                             player.updatC(5.f);
                             turno=3;
                             buttons.changeTurn();
+                            player.combatAnim();
+
                         break;
 
                         case 2:
@@ -100,6 +98,8 @@ void Combate::start(sf::RenderWindow* window)
                         break;
                     }
                 }
+            }else if(player.getCombat()!=0){
+                player.combatAnim();
             }
             else if(turno==2)
                 {

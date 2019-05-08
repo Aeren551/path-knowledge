@@ -1,9 +1,7 @@
 #include <iostream>
 #include "Player.h"
 
-Player::Player(sf::Vector2f size, float x,float y){
-    player.setSize(size);
-    player.setFillColor(sf::Color::White);
+Player::Player(float x,float y){
 
     //Parte de animacion y movimiento
     int cont=0;
@@ -16,6 +14,7 @@ Player::Player(sf::Vector2f size, float x,float y){
 
     texture = new sf::Texture();
     sprite = new sf::Sprite();
+    player = new sf::Sprite();
 
     //Carga la textura y si da error lanza un mensaje
     if(!texture->loadFromFile("resources/character.png"))
@@ -32,6 +31,17 @@ Player::Player(sf::Vector2f size, float x,float y){
     sprite->setOrigin(SPRITE_WIDTH/2,SPRITE_HEIGHT);
     //Coloco el sprite en su posicion inicial
     sprite->setPosition(posicion);
+
+
+    player->setTexture(*texture);
+
+    //Cojo el player inicial del spritesheet
+    player->setTextureRect(sf::IntRect(3*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
+    //Elegir el origen de coordenadas del player
+    player->setOrigin(SPRITE_HEIGHT/2,SPRITE_HEIGHT);
+    //Coloco el player en su posicion inicial
+    player->setPosition(posicion);
+    player->scale(6,6);
     ////////////////////////////////////////////////////////////////////////////////////fin
 
     //Conocimiento
@@ -193,7 +203,7 @@ void Player::colisionMapa ()
 
 //render del personaje en combate
 void Player::draw(sf::RenderWindow* window){
-    window->draw(player);
+    window->draw(*player);
     window->draw(conocimiento);
     window->draw(estres);
     window->draw(bordere);
@@ -201,7 +211,7 @@ void Player::draw(sf::RenderWindow* window){
 }
 //posicion para el combate
 void Player::setPosition(int x, int y){
-    player.setPosition(x,y);
+    player->setPosition(x,y);
 }
 //posicion del estres en combate
 void Player::setPositionE(int x, int y){
@@ -237,6 +247,30 @@ void Player::updatC(float x){
         valc=x+valc;
         std::cout<<valc<<std::endl;
         }
+}
+
+void Player::combatAnim(){
+    animCombat++;
+    if(animCombat==1){
+        player->setTextureRect(sf::IntRect(0*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
+    }
+    else if(animCombat==2){
+        player->setTextureRect(sf::IntRect(1*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
+    }
+    else if(animCombat==3){
+        player->setTextureRect(sf::IntRect(2*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
+    }
+    else if(animCombat==4){
+        player->setTextureRect(sf::IntRect(3*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
+    }
+    else{
+        animCombat=0;
+        player->setTextureRect(sf::IntRect(3*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
+    }
+}
+
+int Player::getCombat(){
+    return animCombat;
 }
 
 
