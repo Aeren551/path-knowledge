@@ -14,7 +14,7 @@ Estados * Estados::Instance()
 
 Estados::Estados()
 {
-    estado = 0;
+    estado = 1;
 }
 
 Estados::~Estados()

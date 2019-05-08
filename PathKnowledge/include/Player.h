@@ -26,7 +26,6 @@ class Player
         void render (sf::RenderWindow* window);
 
         sf::Vector2i* getCoordenadas ();
-        sf::Vector2f* getPosition();
         void setCoordenadas (int width, int height);
         void colisionMapa ();
 
