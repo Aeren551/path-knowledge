@@ -4,8 +4,8 @@
 Player::Player(sf::Vector2f size, float x,float y){
     player.setSize(size);
     player.setFillColor(sf::Color::White);
-    //Parte de animacion y movimiento
 
+    //Parte de animacion y movimiento
     int cont=0;
     source= sf::Vector2i (0, 0);
     coordenadas = sf::Vector2i(0,0);
@@ -179,6 +179,11 @@ void Player::setCoordenadas(int width, int height)
 sf::Vector2i* Player::getCoordenadas()
 {
     return &coordenadas;
+}
+
+sf::Vector2f* Player::getPosition()
+{
+    return &posicion;
 }
 void Player::colisionMapa ()
 {
