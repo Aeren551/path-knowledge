@@ -66,7 +66,7 @@
 	<SFML/Graphics.hpp>
 	"Player.h"
 
-1555352706 source:/home/aeren/git/SFML/PathKnowledge/main.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Player.h"
@@ -76,11 +76,11 @@
 	"Mapa.h"
 	"Estados.h"
 
-1555354387 /home/aeren/git/SFML/PathKnowledge/include/Player.h
+1557299750 /home/aeren/git/SFML/PathKnowledge/include/Player.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1555354387 /home/aeren/git/SFML/PathKnowledge/include/Combate.h
+1557299750 /home/aeren/git/SFML/PathKnowledge/include/Combate.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Player.h"
@@ -88,59 +88,59 @@
 	"Buttons.h"
 	"Estados.h"
 
-1555354387 /home/aeren/git/SFML/PathKnowledge/include/Enemy.h
+1557299750 /home/aeren/git/SFML/PathKnowledge/include/Enemy.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1555354387 /home/aeren/git/SFML/PathKnowledge/include/Buttons.h
+1557299750 /home/aeren/git/SFML/PathKnowledge/include/Buttons.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1555354387 source:/home/aeren/git/SFML/PathKnowledge/src/Buttons.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/src/Buttons.cpp
 	"Buttons.h"
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1555354387 source:/home/aeren/git/SFML/PathKnowledge/src/Combate.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/src/Combate.cpp
 	"Combate.h"
 
-1555354387 source:/home/aeren/git/SFML/PathKnowledge/src/Enemy.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/src/Enemy.cpp
 	"Enemy.h"
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1555354387 source:/home/aeren/git/SFML/PathKnowledge/src/Estados.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/src/Estados.cpp
 	"Estados.h"
 
-1555354387 /home/aeren/git/SFML/PathKnowledge/include/Estados.h
+1557299750 /home/aeren/git/SFML/PathKnowledge/include/Estados.h
 
-1555354387 source:/home/aeren/git/SFML/PathKnowledge/src/Mapa.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/src/Mapa.cpp
 	"Mapa.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 	<stdlib.h>
 
-1555354387 /home/aeren/git/SFML/PathKnowledge/include/Mapa.h
+1557299750 /home/aeren/git/SFML/PathKnowledge/include/Mapa.h
 	"tinyxml2.h"
 	<SFML/Graphics.hpp>
 
-1555354387 source:/home/aeren/git/SFML/PathKnowledge/src/Menu.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/src/Menu.cpp
 	"Menu.h"
 
-1555354387 /home/aeren/git/SFML/PathKnowledge/include/Menu.h
+1557299750 /home/aeren/git/SFML/PathKnowledge/include/Menu.h
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1555354387 source:/home/aeren/git/SFML/PathKnowledge/src/Nivel.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/src/Nivel.cpp
 	"Nivel.h"
 
-1555354387 /home/aeren/git/SFML/PathKnowledge/include/Nivel.h
+1557299750 /home/aeren/git/SFML/PathKnowledge/include/Nivel.h
 
-1555354387 source:/home/aeren/git/SFML/PathKnowledge/src/Player.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/src/Player.cpp
 	<iostream>
 	"Player.h"
 
-1555314697 /home/aeren/git/SFML/PathKnowledge/include/tinyxml2.h
+1557299750 /home/aeren/git/SFML/PathKnowledge/include/tinyxml2.h
 	<ctype.h>
 	<limits.h>
 	<stdio.h>
@@ -156,7 +156,7 @@
 	<android/log.h>
 	<assert.h>
 
-1555314697 source:/home/aeren/git/SFML/PathKnowledge/tinyxml2.cpp
+1557299750 source:/home/aeren/git/SFML/PathKnowledge/tinyxml2.cpp
 	"include/tinyxml2.h"
 	<new>
 	<stddef.h>
