@@ -5,19 +5,28 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Buttons.h"
+#include "Estados.h"
 
 #define UPDATE_TICK_TIME 1000/15
 
 class Combate
 {
     public:
-        Combate();
+        Combate(Player p,Enemy e);
         virtual ~Combate();
         void start(sf::RenderWindow* window);
-
+        void render(sf::RenderWindow* window);
     protected:
 
     private:
+        Player player;
+        Enemy enemy;
+        int turno;
+        Buttons buttons;
+        sf::Font font;
+        sf::Text text;
+        sf::Text hp;
+        sf::Text exp;
 };
 
 #endif // COMBATE_H
