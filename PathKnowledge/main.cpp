@@ -16,8 +16,7 @@ int main()
 
     //=============ESTO HAY QUE BORRARLO DE AQUI=============
     //Creamos una ventana
-    Player player(0,0);//Cambiar por Sprite
-    Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
+    //Cambiar por Sprite
     //=======================================================
 
     // Create the main window
@@ -29,7 +28,7 @@ int main()
     sf::Event event;
     //Reloj del juego
     sf::Clock clock;
-    Combate* combate = new Combate(player,enemy);
+
     Menu* menu = new Menu();
     //maquina de estados (0 menu principal)
     Estados * estado = Estados::Instance();
@@ -37,6 +36,8 @@ int main()
     //creamos personaje
     // boorrar el vector mas adelante
     Player* jugador = new Player(304.0,288.0);
+    Enemy enemy(sf::Vector2f(100,100));
+    Combate* combate = new Combate(jugador,enemy);
     float percentTick = 1000/15;
 
     Mapa * mapa = Mapa::Instance();

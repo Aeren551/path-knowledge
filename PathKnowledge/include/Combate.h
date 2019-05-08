@@ -12,14 +12,14 @@
 class Combate
 {
     public:
-        Combate(Player p,Enemy e);
+        Combate(Player* p,Enemy e);
         virtual ~Combate();
         void start(sf::RenderWindow* window);
         void render(sf::RenderWindow* window);
     protected:
 
     private:
-        Player player;
+        Player* player;
         Enemy enemy;
         int turno;
         Buttons buttons;

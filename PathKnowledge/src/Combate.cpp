@@ -3,7 +3,7 @@
 #define UPDATE_TICK_TIME 1000/15
 
 
-Combate::Combate(Player p, Enemy e):player(p),enemy(e),buttons(sf::Vector2f(125,125))
+Combate::Combate(Player* p, Enemy e):player(p),enemy(e),buttons(sf::Vector2f(125,125))
 {
 
     //=======================ORDENAR ESTO CON EL .H=====================
@@ -20,12 +20,12 @@ Combate::Combate(Player p, Enemy e):player(p),enemy(e),buttons(sf::Vector2f(125,
     text.setPosition(200,100);
     //player(sf::Vector2f(75,75));//Cambiar por Sprite
     //Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
-    player.setPosition(200,500);
+    player->setPosition(200,500);
     enemy.setPosition(480,187);
-    player.setPositionE(50,100);
+    player->setPositionE(50,100);
     hp.setPosition(5,100);
     hp.setCharacterSize(10);
-    player.setPositionC(50,150);
+    player->setPositionC(50,150);
     exp.setPosition(5,150);
     exp.setCharacterSize(10);
     hp.setString("Est.");
@@ -71,10 +71,10 @@ void Combate::start(sf::RenderWindow* window)
                     {
                         case 1:
                             text.setString("Has atacado");
-                            player.updatC(5.f);
+                            player->updatC(5.f);
                             turno=3;
                             buttons.changeTurn();
-                            player.combatAnim();
+                            player->combatAnim();
 
                         break;
 
@@ -86,7 +86,7 @@ void Combate::start(sf::RenderWindow* window)
 
                         case 3:
                             text.setString("Has usado Items");
-                            player.updatE(-20.f);
+                            player->updatE(-20.f);
                             turno=3;
                             buttons.changeTurn();
                         break;
@@ -98,8 +98,8 @@ void Combate::start(sf::RenderWindow* window)
                         break;
                     }
                 }
-            }else if(player.getCombat()!=0){
-                player.combatAnim();
+            }else if(player->getCombat()!=0){
+                player->combatAnim();
             }
             else if(turno==2)
                 {
@@ -114,7 +114,7 @@ void Combate::start(sf::RenderWindow* window)
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
                     {
                         text.setString("Te Estresas");
-                        player.updatE(10.f);
+                        player->updatE(10.f);
                         turno=4;
                     }
                 }
@@ -139,7 +139,7 @@ void Combate::render(sf::RenderWindow* window){
     hp.setString("Est.");
     if(turno==0)
         text.setString("");
-    player.draw(window);
+    player->draw(window);
     enemy.draw(window);
     window->draw(text);
     window->draw(hp);

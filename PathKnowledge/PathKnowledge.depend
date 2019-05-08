@@ -81,7 +81,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1557303506 /home/aeren/git/SFML/PathKnowledge/include/Combate.h
+1557304634 /home/aeren/git/SFML/PathKnowledge/include/Combate.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Player.h"
@@ -102,7 +102,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1557303681 source:/home/aeren/git/SFML/PathKnowledge/src/Combate.cpp
+1557304654 source:/home/aeren/git/SFML/PathKnowledge/src/Combate.cpp
 	"Combate.h"
 
 1555602867 source:/home/aeren/git/SFML/PathKnowledge/src/Enemy.cpp
