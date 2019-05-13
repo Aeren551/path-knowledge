@@ -1,5 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -10,8 +11,8 @@
 class Player
 {
     public:
-        Player(float x, float y);
-        virtual ~Player();//
+        Player();
+        virtual ~Player();
         void draw(sf::RenderWindow* window);
         void setPosition(int x, int y);
         void setPositionC(int x, int y);
@@ -20,15 +21,16 @@ class Player
         void updatE(float x);
         //movimiento y animacion
 
-        void eventos (int tecla);       // eventos de teclado
+        void eventos(); // eventos de teclado
         void actualizarPos (float time);   // cambiar posicion y lastPosicion
         void interpolar (float tick);
         void render (sf::RenderWindow* window);
 
         sf::Vector2i* getCoordenadas ();
         sf::Vector2f* getPosition();
+        sf::Sprite* getSprite();
         void setCoordenadas (int width, int height);
-        void colisionMapa ();
+        void colisionMapa();
         void combatAnim();
         int getCombat();
 

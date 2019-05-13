@@ -3,17 +3,22 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+using namespace std;
+
 class Enemy
 {
     public:
-        Enemy(sf::Vector2f size);
-        void draw(sf::RenderWindow* window);
-        void setPosition(int x, int y);
+        Enemy(int i);
+        virtual ~Enemy();
+        void drawInMap(sf::RenderWindow* window);
+        bool colision(sf::Sprite* jugador);
 
     protected:
 
     private:
-        sf::RectangleShape enemy;
+        sf::Texture *texture;
+        sf::Sprite *spriteEnemigo;
+        sf::Vector2f posicion;
 };
 
 #endif // ENEMY_H

@@ -21,7 +21,6 @@ Combate::Combate(Player* p, Enemy e):player(p),enemy(e),buttons(sf::Vector2f(125
     //player(sf::Vector2f(75,75));//Cambiar por Sprite
     //Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
     player->setPosition(200,500);
-    enemy.setPosition(480,187);
     player->setPositionE(50,100);
     hp.setPosition(5,100);
     hp.setCharacterSize(10);
@@ -135,12 +134,11 @@ void Combate::start(sf::RenderWindow* window)
 
 void Combate::render(sf::RenderWindow* window){
     window->clear();
-    exp.setString("Con.");
-    hp.setString("Est.");
+    exp.setString("Conocimiento");
+    hp.setString("Estres");
     if(turno==0)
         text.setString("");
     player->draw(window);
-    enemy.draw(window);
     window->draw(text);
     window->draw(hp);
     window->draw(exp);

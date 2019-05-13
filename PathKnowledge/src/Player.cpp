@@ -1,15 +1,15 @@
 #include <iostream>
 #include "Player.h"
 
-Player::Player(float x,float y){
+Player::Player(){
 
     //Parte de animacion y movimiento
     int cont=0;
     source= sf::Vector2i (0, 0);
     coordenadas = sf::Vector2i(0,0);
 
-    posicion = sf::Vector2f(x,y);
-    lastPosicion = sf::Vector2f(x,y);
+    posicion = sf::Vector2f(304, 288);
+    lastPosicion = posicion;
     velocidad = sf::Vector2f(0,0);
 
     texture = new sf::Texture();
@@ -81,7 +81,7 @@ void Player::render (sf::RenderWindow* window)
 {
     window->draw(*sprite);
 }
-void Player::eventos(int tecla)
+void Player::eventos()
 {
     // ARRIBA
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -157,7 +157,6 @@ void Player::actualizarPos (float time)
 
     // suma de vectores
     posicion += velocidad*time;
-
     velocidad.x = 0;
     velocidad.y = 0;
 
@@ -166,7 +165,7 @@ void Player::actualizarPos (float time)
 }
 void Player::interpolar (float tick)
 {
-    sf::Vector2f posicionInterpolada = sf::Vector2f();
+    sf::Vector2f posicionInterpolada;
 
     posicionInterpolada = (posicion-lastPosicion)*tick + lastPosicion;
 
@@ -271,6 +270,11 @@ void Player::combatAnim(){
 
 int Player::getCombat(){
     return animCombat;
+}
+
+sf::Sprite* Player::getSprite()
+{
+    return sprite;
 }
 
 

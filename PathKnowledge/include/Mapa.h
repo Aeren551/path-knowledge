@@ -9,26 +9,22 @@ using namespace tinyxml2;
 class Mapa //SINGLETON
 {
     public:
-        static Mapa * Instance();
+        Mapa();
+        virtual ~Mapa();
         void leerTMX();
         void render(sf::RenderWindow *w);
         void setActiveLayer(int layer);
-        virtual ~Mapa();
+
 
         //para el personaje
-         int getTileWidth();
+        int getTileWidth();
         int getTileHeight();
         int getTilemap(int l, int x, int y);
         bool colision (int x, int y);
 
     protected:
-        Mapa();
-        Mapa(const Mapa & );
-        Mapa &operator= (const Mapa & );
 
     private:
-
-        static Mapa * pinstance;
         void creaTileArray();
         void cargarGID();
         void cargarTextura();

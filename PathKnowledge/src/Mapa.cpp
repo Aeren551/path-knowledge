@@ -5,18 +5,6 @@
 
 using namespace std;
 
-//----------------SINGLETON-----------------------
-
-Mapa * Mapa::pinstance = 0; //Inicializar el puntero
-
-Mapa * Mapa::Instance()
-{
-    if(pinstance == 0) //¿Es la primera llamada?
-    {
-        pinstance = new Mapa; //Creamos la instancia
-    }
-    return pinstance; //Devolvemos la direccion de la instancia
-}
 
 Mapa::Mapa()
 {
