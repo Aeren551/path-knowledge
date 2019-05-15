@@ -124,6 +124,8 @@ int main()
 
                     mapa->setActiveLayer(3);
                     mapa->render(window);
+                    mapa->setActiveLayer(4);
+                    mapa->render(window);
 
                     window->display();
 
