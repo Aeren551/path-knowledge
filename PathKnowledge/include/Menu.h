@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Estados.h"
 
-
+using namespace std;
 
 class Menu
 {

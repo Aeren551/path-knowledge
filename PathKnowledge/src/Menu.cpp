@@ -4,7 +4,10 @@ Menu::Menu()
 {
     objetoSeleccionado = 0;
     numObjetos = 0;
-    fuente.loadFromFile("resources/fonts/Triforce.ttf");
+    if(!fuente.loadFromFile("resources/fonts/Triforce.ttf"))
+    {
+        cout<<"Error al cargar la fuente"<<endl;
+    }
     menuObjetos = NULL;
 }
 
