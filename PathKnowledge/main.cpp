@@ -29,6 +29,7 @@ int main()
     Estados * estado = Estados::Instance();
     //creamos personaje
     Player* jugador = new Player();
+    Combate * combate;
     vector<Enemy*> enemigos;
     for(int i = 0; i < 5; i++)
     {
@@ -38,6 +39,7 @@ int main()
 
     //Combate* combate = new Combate(jugador,enemy);
     float percentTick = 1000/15;
+    bool entroCombate = true;
 
     Mapa * mapa = new Mapa();
     mapa->leerTMX();
@@ -88,17 +90,14 @@ int main()
                     {
                         if(enemigos[i]->colision(jugador->getSprite()))
                         {
+                            combate = new Combate(jugador, enemigos[i]);
                             enemigos.erase(enemigos.begin()+i);
+                            estado->setEstado(2);
                         }
                     }
                     //=========================================================================
 
                     //==============================Cambiar estados============================
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::C))
-                    {
-                        estado->setEstado(2);
-                        window->setView(battle);
-                    }
                     // MENU PAUSE
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                     {
@@ -107,7 +106,7 @@ int main()
                     }
                     //=========================================================================
 
-                    //==================================Render=================================
+                    //==================================Render(sacarlo fuera)=================================
                     window->clear();
                     mapa->setActiveLayer(0);
                     mapa->render(window);
@@ -127,14 +126,23 @@ int main()
                     mapa->setActiveLayer(4);
                     mapa->render(window);
 
+                    jugador->HUD(window);
+
                     window->display();
 
                 break;
 
                 case 2:
-                    //CREAR EL COMBATE AQUI
-                    //combate->start(window);
-                    //combate->render(window);
+                    //COMBATE
+                    window->setView(battle);
+                    combate->input(window);
+
+                    //sacar fuera el render
+                    window->clear();
+                    combate->render(window);
+                    window->display();
+
+
                 break;
 
                 case 3:

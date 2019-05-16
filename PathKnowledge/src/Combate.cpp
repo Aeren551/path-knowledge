@@ -3,146 +3,163 @@
 #define UPDATE_TICK_TIME 1000/15
 
 
-Combate::Combate(Player* p, Enemy e):player(p),enemy(e),buttons(sf::Vector2f(125,125))
+Combate::Combate(Player* p, Enemy *e)
 {
+    cout<<"creo un combate"<<endl;
+    sf::Clock relojInput;
+    player = p;
+    enemy = e;
+    spriteJugador = p->getCombatSprite();
+    spriteEnemigo = e->getCombatSprite();
 
-    //=======================ORDENAR ESTO CON EL .H=====================
-    int turno=0;
-    //Creamos una ventana
-    font.loadFromFile("Pixeled.ttf");
-    text.setFont(font);
-    hp.setFont(font);
-    exp.setFont(font);
-    text.setColor(sf::Color::White);
-    hp.setColor(sf::Color::Red);
-    exp.setColor(sf::Color::Blue);
-    text.setCharacterSize(25);
-    text.setPosition(200,100);
-    //player(sf::Vector2f(75,75));//Cambiar por Sprite
-    //Enemy enemy(sf::Vector2f(100,100));//Cambiar por Sprite
-    player->setPosition(200,500);
-    player->setPositionE(50,100);
-    hp.setPosition(5,100);
-    hp.setCharacterSize(10);
-    player->setPositionC(50,150);
-    exp.setPosition(5,150);
-    exp.setCharacterSize(10);
-    hp.setString("Est.");
-    exp.setString("Con.");
 
-}
-
-Combate::~Combate(){
-
-}
-
-void Combate::start(sf::RenderWindow* window)
-{
-       sf::Event event;
-    //maquina de estados (0 menu principal)
-    Estados * estado = Estados::Instance();
-    sf::Clock clock;
-    while(estado->getEstado()==2)
+    //====================IMAGEN DE FONDO==========================
+    texturaFondo = new sf::Texture;
+    if(!texturaFondo->loadFromFile("resources/fondo_bosque_2.jpg"))
     {
-        if(clock.getElapsedTime().asMilliseconds() > UPDATE_TICK_TIME*1.5)
-        {
-            while (window->pollEvent(event))
-        {
-            // Close window : exit
-            if (event.type == sf::Event::Closed)
-                    estado->setEstado(1);
-            if (event.type == sf::Event::KeyPressed && event.key.code== sf::Keyboard::Escape)
-                estado->setEstado(1);
+        cout<<"Error con la textura del bosque para fondo"<<endl;
+    }
+    spriteFondo = new sf::Sprite;
+    spriteFondo->setTexture(*texturaFondo);
+    spriteFondo->setScale(1.2, 1);
+    //=============================================================
 
-        }
-            if(turno==0)
-            {
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-                    buttons.cursor(-1);
+    //=======================OPCIONES EN COMBATE===================
+    fuenteCombate = new sf::Font;
+    if(!fuenteCombate->loadFromFile("resources/fonts/Pixeled.ttf"))
+    {
+        cout<<"Error al cargar la fuente"<<endl;
+    }
+    menuCombate = new sf::Text[3];
+    menuCombate[0].setString("Ataque normal");
+    menuCombate[1].setString("Habilidad");
+    menuCombate[2].setString("Huir");
+    for(int i = 0; i < 3; i++)
+    {
+        menuCombate[i].setFont(*fuenteCombate);
+        if(i == 1)
+            menuCombate[i].setPosition(i*425+80, 625);
+        else
+            menuCombate[i].setPosition(i*425+40, 625);
+    }
+    marcarSeleccionado();
+    //=============================================================
 
-                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-                    buttons.cursor(1);
+    //==============BARRAS DE VIDA Y DEMAS=========================
+    textura = new sf::Texture();
+    if(!textura->loadFromFile("resources/character.png"))
+    {
+        cout<<"Error con la textura character.png (clase combate)"<<endl;
+    }
+    barraVidaEnemigo = new sf::Sprite();
+    barraVidaEnemigo->setTexture(*textura);
+    barraVidaEnemigo->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT+6, 56, 7)); //max 52
+    barraVidaEnemigo->setPosition(710,185);
+    barraVidaEnemigo->scale(5,5);
 
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-                {
-                    int act = buttons.getOption();
-                    switch(act)
-                    {
-                        case 1:
-                            text.setString("Has atacado");
-                            player->updatC(5.f);
-                            turno=3;
-                            buttons.changeTurn();
-                            player->combatAnim();
-
-                        break;
-
-                        case 2:
-                            text.setString("Has usado Skill");
-                            turno=2;
-                            buttons.changeTurn();
-                        break;
-
-                        case 3:
-                            text.setString("Has usado Items");
-                            player->updatE(-20.f);
-                            turno=3;
-                            buttons.changeTurn();
-                        break;
-
-                        case 4:
-                            text.setString("Has usado Flee");
-                            Estados * estado = Estados::Instance();
-                            estado->setEstado(1);
-                        break;
-                    }
-                }
-            }else if(player->getCombat()!=0){
-                player->combatAnim();
-            }
-            else if(turno==2)
-                {
-                    text.setString("Menu Skills");
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-                    {
-                        turno=3;
-                    }
-                }
-            else if(turno==3)
-                {
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-                    {
-                        text.setString("Te Estresas");
-                        player->updatE(10.f);
-                        turno=4;
-                    }
-                }
-            else if(turno==4)
-                {
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-                    {
-                        text.setString("");
-                        buttons.changeTurn();
-                        turno=0;
-                    }
-                }//end turno
-                render(window);
-            clock.restart();
-            }
-            }
+    vidaEnemigo = new sf::Sprite();
+    //=============================================================
 }
 
-void Combate::render(sf::RenderWindow* window){
-    window->clear();
-    exp.setString("Conocimiento");
-    hp.setString("Estres");
-    if(turno==0)
-        text.setString("");
-    player->draw(window);
-    window->draw(text);
-    window->draw(hp);
-    window->draw(exp);
-    if(buttons.getTurn())
-        buttons.draw(window);
-    window->display();
+Combate::~Combate()
+{
+    delete texturaFondo;
+    texturaFondo = NULL;
+}
+
+void Combate::input(sf::RenderWindow* window)
+{
+    Estados * estado = Estados::Instance();
+    if(relojInput.getElapsedTime().asSeconds() >= 0.15 && estado->getEstadoCombate() == 0)
+    {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        {
+            relojInput.restart();
+        }
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        {
+            moveLeft();
+            relojInput.restart();
+        }
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        {
+            relojInput.restart();
+        }
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        {
+            moveRight();
+            relojInput.restart();
+        }
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+        {
+            ejecutarAccion();
+            relojInput.restart();
+        }
+    }
+}
+
+void Combate::ejecutarAccion()
+{
+    Estados * estado = Estados::Instance();
+    switch(objetoSeleccionado)
+    {
+        case 0:
+            cout<<"Ataco"<<endl;
+            //hago las cosas que tenga que hacer
+            //y despues...
+            //cambio estadoCombate para dar turno al enemigo
+            //estado->setEstadoCombate(1);
+        break;
+
+        case 1:
+            cout<<"Uso habilidad"<<endl;
+            //hago las cosas que tenga que hacer
+            //y despues...
+            //cambio estadoCombate para dar turno al enemigo
+            //estado->setEstadoCombate(1);
+        break;
+
+        case 2:
+            cout<<"Huyo como un cobarde"<<endl;
+            player->ganaConocimiento();
+            estado->setEstado(1);
+        break;
+    }
+}
+
+void Combate::moveRight()
+{
+    if(objetoSeleccionado < 2)
+    {
+        menuCombate[objetoSeleccionado].setColor(sf::Color::White);
+        objetoSeleccionado++;
+    }
+    marcarSeleccionado();
+}
+
+void Combate::moveLeft()
+{
+    if(objetoSeleccionado > 0)
+    {
+        menuCombate[objetoSeleccionado].setColor(sf::Color::White);
+        objetoSeleccionado--;
+    }
+    marcarSeleccionado();
+}
+
+void Combate::marcarSeleccionado()
+{
+    menuCombate[objetoSeleccionado].setColor(sf::Color::Green);
+}
+
+void Combate::render(sf::RenderWindow* window)
+{
+    window->draw(*spriteFondo);
+    window->draw(*spriteJugador);
+    window->draw(*spriteEnemigo);
+    window->draw(*barraVidaEnemigo);
+    for(int i = 0; i < 3; i++)
+    {
+        window->draw(menuCombate[i]);
+    }
 }

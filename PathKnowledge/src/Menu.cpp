@@ -4,7 +4,7 @@ Menu::Menu()
 {
     objetoSeleccionado = 0;
     numObjetos = 0;
-    if(!fuente.loadFromFile("resources/fonts/Triforce.ttf"))
+    if(!fuente.loadFromFile("resources/fonts/Pixeled.ttf"))
     {
         cout<<"Error al cargar la fuente"<<endl;
     }
@@ -19,14 +19,14 @@ int Menu::menuInicio(sf::RenderWindow* window)
     int width = window->getSize().x;
     int height = window->getSize().y;
 
-    menuObjetos[0].setString("JUGAR");
+    menuObjetos[0].setString("Comenzar partida");
     menuObjetos[1].setString("Ayuda");
     menuObjetos[2].setString("Creditos");
-    menuObjetos[3].setString("SALIR");
+    menuObjetos[3].setString("Salir");
     for (int i=0; i<numObjetos; i++)
     {
         menuObjetos[i].setFont(fuente);
-        menuObjetos[i].setColor(sf::Color::Red);
+        menuObjetos[i].setColor(sf::Color::White);
         menuObjetos[i].setPosition(sf::Vector2f((width/2)-(menuObjetos[i].getLocalBounds().width/2), height/(numObjetos+1)*(i+1)));
     }
     objetoSeleccionado = 0;
@@ -103,7 +103,7 @@ int Menu::menuPause(sf::RenderWindow* window)
     for (int i=0; i<numObjetos; i++)
     {
         menuObjetos[i].setFont(fuente);
-        menuObjetos[i].setColor(sf::Color::Red);
+        menuObjetos[i].setColor(sf::Color::White);
         menuObjetos[i].setPosition(sf::Vector2f((width/2)-(menuObjetos[i].getLocalBounds().width/2), height/(numObjetos+1)*(i+1)));
     }
     objetoSeleccionado = 0;
@@ -175,7 +175,7 @@ void Menu::moveUp()
 {
     if(objetoSeleccionado > 0)
     {
-        menuObjetos[objetoSeleccionado].setColor(sf::Color::Red);
+        menuObjetos[objetoSeleccionado].setColor(sf::Color::White);
         --objetoSeleccionado;
         menuObjetos[objetoSeleccionado].setColor(sf::Color::Green);
     }
@@ -185,7 +185,7 @@ void Menu::moveDown()
 {
     if(objetoSeleccionado < numObjetos-1)
     {
-        menuObjetos[objetoSeleccionado].setColor(sf::Color::Red);
+        menuObjetos[objetoSeleccionado].setColor(sf::Color::White);
         ++objetoSeleccionado;
         menuObjetos[objetoSeleccionado].setColor(sf::Color::Green);
     }
