@@ -47,14 +47,14 @@ Player::Player(){
 
     rellenoConocimientoSprite = new sf::Sprite();
     rellenoConocimientoSprite->setTexture(*texture);
-    rellenoConocimientoSprite->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT, 0, 3)); //max 52
-    rellenoConocimientoSprite->setPosition(posicionRellenoEstres);
+    rellenoConocimientoSprite->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT, conocimiento, 3)); //max 52
+    rellenoConocimientoSprite->setPosition(posicionRellenoConocimiento);
     rellenoConocimientoSprite->scale(1.5,1.5);
 
     rellenoEstresSprite = new sf::Sprite();
     rellenoEstresSprite->setTexture(*texture);
-    rellenoEstresSprite->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT+3, conocimiento, 3)); //max 52
-    rellenoEstresSprite->setPosition(posicionRellenoConocimiento);
+    rellenoEstresSprite->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT+3, estres, 3)); //max 52
+    rellenoEstresSprite->setPosition(posicionRellenoEstres);
     rellenoEstresSprite->scale(1.5,1.5);
 
 }
@@ -204,7 +204,6 @@ sf::Sprite* Player::getCombatSprite()
 void Player::ganaConocimiento()
 {
     conocimiento += 5;
-    rellenoConocimientoSprite->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT+3, conocimiento, 3)); //max 52
 }
 
 void Player::render(sf::RenderWindow* window)

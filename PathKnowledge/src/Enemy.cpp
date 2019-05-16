@@ -71,6 +71,21 @@ bool Enemy::colision(sf::Sprite* jugador)
     return false;
 }
 
+int Enemy::getVida()
+{
+    return vida;
+}
+
+void Enemy::sumaVida()
+{
+    vida += 2;
+}
+
+void Enemy::restaVida()
+{
+    vida -= 2;
+}
+
 sf::Sprite* Enemy::getCombatSprite()
 {
     return combatSpriteEnemigo;

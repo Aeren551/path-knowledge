@@ -135,6 +135,7 @@ int main()
                 case 2:
                     //COMBATE
                     window->setView(battle);
+                    combate->compruebaFin();
                     combate->input(window);
 
                     //sacar fuera el render

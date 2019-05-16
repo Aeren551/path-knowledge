@@ -58,6 +58,11 @@ Combate::Combate(Player* p, Enemy *e)
     barraVidaEnemigo->scale(5,5);
 
     vidaEnemigo = new sf::Sprite();
+    vidaEnemigo->setTexture(*textura);
+    vidaEnemigo->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT+3, enemy->getVida(), 3)); //max 52
+    vidaEnemigo->setPosition(720,195);
+    vidaEnemigo->scale(5,5);
+
     //=============================================================
 }
 
@@ -65,6 +70,17 @@ Combate::~Combate()
 {
     delete texturaFondo;
     texturaFondo = NULL;
+}
+
+void Combate::compruebaFin()
+{
+    Estados * estado = Estados::Instance();
+    if(enemy->getVida() <= 0)
+    {
+        player->ganaConocimiento();
+        estado->setEstado(1);
+    }
+
 }
 
 void Combate::input(sf::RenderWindow* window)
@@ -109,6 +125,8 @@ void Combate::ejecutarAccion()
             //y despues...
             //cambio estadoCombate para dar turno al enemigo
             //estado->setEstadoCombate(1);
+            enemy->restaVida();
+            vidaEnemigo->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT+3, enemy->getVida(), 3)); //max 52
         break;
 
         case 1:
@@ -158,6 +176,7 @@ void Combate::render(sf::RenderWindow* window)
     window->draw(*spriteJugador);
     window->draw(*spriteEnemigo);
     window->draw(*barraVidaEnemigo);
+    window->draw(*vidaEnemigo);
     for(int i = 0; i < 3; i++)
     {
         window->draw(menuCombate[i]);

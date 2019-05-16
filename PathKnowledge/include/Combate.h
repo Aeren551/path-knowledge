@@ -16,6 +16,7 @@ class Combate
         void input(sf::RenderWindow* window);
         void render(sf::RenderWindow* window);
         void marcarSeleccionado();
+        void compruebaFin();
     protected:
 
     private:
