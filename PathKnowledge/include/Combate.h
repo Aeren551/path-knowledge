@@ -4,7 +4,6 @@
 #include <iostream>
 #include "Player.h"
 #include "Enemy.h"
-#include "Buttons.h"
 #include "Estados.h"
 
 #define UPDATE_TICK_TIME 1000/15
@@ -12,22 +11,41 @@
 class Combate
 {
     public:
-        Combate(Player* p,Enemy e);
+        Combate(Player* p,Enemy *e);
         virtual ~Combate();
-        void start(sf::RenderWindow* window);
+        void input(sf::RenderWindow* window);
         void render(sf::RenderWindow* window);
+        void marcarSeleccionado();
+        void compruebaFin();
     protected:
 
     private:
+        //VARIABLES
         Player* player;
-        Enemy enemy;
-        int turno;
-        Buttons buttons;
-        sf::Font font;
-        sf::Text text;
-        sf::Text hp;
-        sf::Text exp;
-        int anima=0;
+        Enemy* enemy;
+
+        sf::Clock relojInput;
+        sf::Sprite* spriteJugador;
+        sf::Sprite* spriteEnemigo;
+
+        sf::Texture* textura;
+        sf::Sprite* barraVidaEnemigo;
+        sf::Sprite* vidaEnemigo;
+
+        sf::Texture* texturaFondo;
+        sf::Sprite* spriteFondo;
+
+        sf::Font* fuenteCombate;
+        sf::Text* menuCombate;
+
+        int objetoSeleccionado = 0;
+
+        //FUNCIONES
+        void moveRight();
+        void moveLeft();
+        void ejecutarAccion();
+
+
 };
 
 #endif // COMBATE_H

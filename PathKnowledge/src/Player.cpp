@@ -4,69 +4,59 @@
 Player::Player(){
 
     //Parte de animacion y movimiento
-    int cont=0;
     source= sf::Vector2i (0, 0);
     coordenadas = sf::Vector2i(0,0);
 
     posicion = sf::Vector2f(304, 288);
+    posicionBarraEstres = sf::Vector2f(304-250, 288-165);
+    posicionRellenoEstres = sf::Vector2f((304-250)+35, (288-165)+60);
+    posicionRellenoConocimiento = sf::Vector2f((304-250)+35, (288-165)+26);
+
     lastPosicion = posicion;
     velocidad = sf::Vector2f(0,0);
 
     texture = new sf::Texture();
-    sprite = new sf::Sprite();
-    player = new sf::Sprite();
-
     //Carga la textura y si da error lanza un mensaje
     if(!texture->loadFromFile("resources/character.png"))
     {
         std::cerr << "Error cargando la imagen character.png";
         exit(0);
     }
-    //Crea el sprite y le asigna la textura
-    sprite->setTexture(*texture);
 
-    //Cojo el sprite inicial del spritesheet
+    //=============SPRITE PARA MAPA=============
+    sprite = new sf::Sprite();
+    sprite->setTexture(*texture);
     sprite->setTextureRect(sf::IntRect(source.x*SPRITE_WIDTH,source.y*SPRITE_HEIGHT,SPRITE_WIDTH,SPRITE_HEIGHT));
-    //Elegir el origen de coordenadas del sprite
     sprite->setOrigin(SPRITE_WIDTH/2,SPRITE_HEIGHT);
-    //Coloco el sprite en su posicion inicial
     sprite->setPosition(posicion);
 
+    //=============SPRITE PARA COMBATE=============
+    combatSprite = new sf::Sprite();
+    combatSprite->setTexture(*texture);
+    combatSprite->setTextureRect(sf::IntRect(0*SPRITE_WIDTH,1*SPRITE_HEIGHT,SPRITE_WIDTH,SPRITE_HEIGHT));
+    combatSprite->setOrigin(SPRITE_WIDTH/2,SPRITE_HEIGHT);
+    combatSprite->setPosition(275,600);
+    combatSprite->setScale(8, 8);
 
-    player->setTexture(*texture);
+    //SPRITE PARA BARRA ESTRES Y CONOCIMIENTO
+    spriteBarras = new sf::Sprite();
+    spriteBarras->setTexture(*texture);
+    spriteBarras->setTextureRect(sf::IntRect(4*SPRITE_WIDTH,0*SPRITE_HEIGHT,78,53));
+    spriteBarras->setPosition(posicionBarraEstres);
+    spriteBarras->scale(1.5,1.5);
 
-    //Cojo el player inicial del spritesheet
-    player->setTextureRect(sf::IntRect(3*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
-    //Elegir el origen de coordenadas del player
-    player->setOrigin(SPRITE_HEIGHT/2,SPRITE_HEIGHT);
-    //Coloco el player en su posicion inicial
-    player->setPosition(posicion);
-    player->scale(6,6);
-    ////////////////////////////////////////////////////////////////////////////////////fin
+    rellenoConocimientoSprite = new sf::Sprite();
+    rellenoConocimientoSprite->setTexture(*texture);
+    rellenoConocimientoSprite->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT, conocimiento, 3)); //max 52
+    rellenoConocimientoSprite->setPosition(posicionRellenoConocimiento);
+    rellenoConocimientoSprite->scale(1.5,1.5);
 
-    //Conocimiento
-    valc =0;
-    valcm=100;
-    borderc.setSize(sf::Vector2f(5,5));
-    conocimiento.setSize(sf::Vector2f(5,5));
-    borderc.setOutlineThickness(0.3);
-    borderc.setScale(20,2);
-    conocimiento.setScale(0,2);
-    conocimiento.setFillColor(sf::Color::Blue);
-    borderc.setOutlineColor(sf::Color::White);
-    borderc.setFillColor(sf::Color::Transparent);
+    rellenoEstresSprite = new sf::Sprite();
+    rellenoEstresSprite->setTexture(*texture);
+    rellenoEstresSprite->setTextureRect(sf::IntRect(4*SPRITE_WIDTH, 2*SPRITE_HEIGHT+3, estres, 3)); //max 52
+    rellenoEstresSprite->setPosition(posicionRellenoEstres);
+    rellenoEstresSprite->scale(1.5,1.5);
 
-    //Estres
-    vale =0;
-    valem = 200;
-    bordere.setSize(sf::Vector2f(5,5));
-    estres.setSize(sf::Vector2f(5,5));
-    bordere.setOutlineThickness(0.3);
-    bordere.setScale(20,2);
-    estres.setScale(0,2);
-    estres.setFillColor(sf::Color::Red);
-    bordere.setOutlineColor(sf::Color::White);
-    bordere.setFillColor(sf::Color::Transparent);
 }
 
 Player::~Player()
@@ -76,11 +66,7 @@ Player::~Player()
     delete texture;
     texture = NULL;
 }
-//render del personaje en mapa
-void Player::render (sf::RenderWindow* window)
-{
-    window->draw(*sprite);
-}
+
 void Player::eventos()
 {
     // ARRIBA
@@ -151,6 +137,7 @@ void Player::eventos()
     // asignar rectangulo de textura correspondiente
     sprite->setTextureRect(sf::IntRect(source.x*SPRITE_WIDTH,source.y*SPRITE_HEIGHT,SPRITE_WIDTH,SPRITE_HEIGHT));
 }
+
 void Player::actualizarPos (float time)
 {
     lastPosicion = posicion;
@@ -170,9 +157,13 @@ void Player::interpolar (float tick)
     posicionInterpolada = (posicion-lastPosicion)*tick + lastPosicion;
 
     sprite->setPosition(posicionInterpolada);
+    spriteBarras->setPosition(posicionInterpolada.x-250, posicionInterpolada.y-165);
+    rellenoEstresSprite->setPosition(posicionInterpolada.x-215, posicionInterpolada.y-105);
+    rellenoConocimientoSprite->setPosition(posicionInterpolada.x-215, posicionInterpolada.y-139);
 
     //std::cout << "sprite: " << posicionInterpolada.x << ", " << posicionInterpolada.y << std::endl;
 }
+
 void Player::setCoordenadas(int width, int height)
 {
     int x = posicion.x/width;
@@ -200,81 +191,34 @@ void Player::colisionMapa ()
     posicion = lastPosicion;
 }
 
-//render del personaje en combate
-void Player::draw(sf::RenderWindow* window){
-    window->draw(*player);
-    window->draw(conocimiento);
-    window->draw(estres);
-    window->draw(bordere);
-    window->draw(borderc);
-}
-//posicion para el combate
-void Player::setPosition(int x, int y){
-    player->setPosition(x,y);
-}
-//posicion del estres en combate
-void Player::setPositionE(int x, int y){
-    estres.setPosition(x,y);
-    bordere.setPosition(x,y);
-}
-
-//posicion conocimiento en combate
-void Player::setPositionC(int x, int y){
-    conocimiento.setPosition(x,y);
-    borderc.setPosition(x,y);
-}
-
-void Player::updatE(float x){
-    if(x+vale>=valem)
-        estres.setScale(20,2);
-    else if(x+vale<=0){
-            estres.setScale(0,2);
-    }else{
-        estres.setScale(((x+vale)/valem)*20.f,2);
-        vale=x+vale;
-        std::cout<<vale<<std::endl;
-        }
-}
-
-void Player::updatC(float x){
-    if(x+valc>=valcm)
-        conocimiento.setScale(20,2);
-    else if(x+valc<=0){
-            conocimiento.setScale(0,2);
-    }else{
-        conocimiento.setScale(((x+valc)/valcm)*20.f,2);
-        valc=x+valc;
-        std::cout<<valc<<std::endl;
-        }
-}
-
-void Player::combatAnim(){
-    animCombat++;
-    if(animCombat==1){
-        player->setTextureRect(sf::IntRect(0*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
-    }
-    else if(animCombat==2){
-        player->setTextureRect(sf::IntRect(1*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
-    }
-    else if(animCombat==3){
-        player->setTextureRect(sf::IntRect(2*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
-    }
-    else if(animCombat==4){
-        player->setTextureRect(sf::IntRect(3*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
-    }
-    else{
-        animCombat=0;
-        player->setTextureRect(sf::IntRect(3*SPRITE_HEIGHT,6*SPRITE_HEIGHT,SPRITE_HEIGHT,SPRITE_HEIGHT));
-    }
-}
-
-int Player::getCombat(){
-    return animCombat;
-}
-
 sf::Sprite* Player::getSprite()
 {
     return sprite;
 }
+
+sf::Sprite* Player::getCombatSprite()
+{
+    return combatSprite;
+}
+
+void Player::ganaConocimiento()
+{
+    conocimiento += 5;
+}
+
+void Player::render(sf::RenderWindow* window)
+{
+    window->draw(*sprite);
+    window->draw(*spriteBarras);
+}
+
+void Player::HUD(sf::RenderWindow* window)
+{
+    window->draw(*spriteBarras);
+    window->draw(*rellenoEstresSprite);
+    window->draw(*rellenoConocimientoSprite);
+}
+
+
 
 

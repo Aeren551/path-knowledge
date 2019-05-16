@@ -9,6 +9,8 @@ class Estados
         virtual ~Estados();
         int getEstado();
         void setEstado(int e);
+        int getEstadoCombate();
+        void setEstadoCombate(int ec);
 
     protected:
         Estados();
@@ -18,6 +20,7 @@ class Estados
     private:
         static Estados * pinstance;
         int estado;
+        int estadoCombate;
 };
 
 #endif // ESTADOS_H

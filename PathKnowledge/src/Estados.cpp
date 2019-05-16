@@ -15,6 +15,7 @@ Estados * Estados::Instance()
 Estados::Estados()
 {
     estado = 0;
+    estadoCombate = 0;
 }
 
 Estados::~Estados()
@@ -30,4 +31,14 @@ int Estados::getEstado()
 void Estados::setEstado(int e)
 {
     estado = e;
+}
+
+int Estados::getEstadoCombate()
+{
+    return estadoCombate;
+}
+
+void Estados::setEstadoCombate(int ec)
+{
+    estadoCombate = ec;
 }

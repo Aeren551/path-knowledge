@@ -14,49 +14,43 @@ class Player
         Player();
         virtual ~Player();
         void draw(sf::RenderWindow* window);
-        void setPosition(int x, int y);
-        void setPositionC(int x, int y);
-        void setPositionE(int x, int y);
-        void updatC(float x);
-        void updatE(float x);
         //movimiento y animacion
-
         void eventos(); // eventos de teclado
         void actualizarPos (float time);   // cambiar posicion y lastPosicion
         void interpolar (float tick);
         void render (sf::RenderWindow* window);
+        void HUD(sf::RenderWindow* window);
 
         sf::Vector2i* getCoordenadas ();
         sf::Vector2f* getPosition();
         sf::Sprite* getSprite();
+        sf::Sprite* getCombatSprite();
         void setCoordenadas (int width, int height);
         void colisionMapa();
-        void combatAnim();
-        int getCombat();
+        void ganaConocimiento();
 
     protected:
+
+
+    private:
+        sf::Texture* texture;
+        sf::Sprite* sprite;
+        sf::Sprite* combatSprite;
+        sf::Sprite* spriteBarras;
+        sf::Sprite* rellenoEstresSprite;
+        sf::Sprite* rellenoConocimientoSprite;
+
+        sf::Vector2f    posicionBarraEstres;
+        sf::Vector2f    posicionRellenoEstres;
+        sf::Vector2f    posicionRellenoConocimiento;
         sf::Vector2f    posicion;       // hacia donde se dirige (INTERPOLACION)
         sf::Vector2f    lastPosicion;   // desde donde parte (INTERPOLACION)
         sf::Vector2f    velocidad;      // vector de velocidad
 
         sf::Vector2i    source;         // para construir el rectangulo de recorte (ANIMACION)
         sf::Vector2i    coordenadas;    // posicion en el mapa (COLISIONES)
-        int cont;
 
-        sf::Texture*    texture;
-        sf::Sprite*     sprite;
-
-    private:
-        sf::Sprite* player;
-        sf::RectangleShape estres;
-        sf::RectangleShape bordere;
-        float vale;
-        float valem;
-        sf::RectangleShape conocimiento;
-        sf::RectangleShape borderc;
-        float valc;
-        float valcm;
-        int animCombat=0;
+        int conocimiento = 0, estres = 0;
 };
 
 #endif // PLAYER_H
