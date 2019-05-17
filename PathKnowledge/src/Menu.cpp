@@ -16,14 +16,7 @@ Menu::Menu()
     {
         cout<<"Error al cargar la la textura del fondo. Menu"<<endl;
     }
-    if(!t_fondo_b1.loadFromFile("resources/Menus/chain.jpg"))
-    {
-        cout<<"Error al cargar la la textura chain. Menu"<<endl;
-    }
-    if(!t_fondo_b2.loadFromFile("resources/Menus/papiro.jpg"))
-    {
-        cout<<"Error al cargar la la textura papiro. Menu"<<endl;
-    }
+
     marco = sf::Sprite(t_marco);
     fondo = sf::Sprite(t_fondo);
     fondo.scale(1.15,1);

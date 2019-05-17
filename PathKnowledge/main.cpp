@@ -7,6 +7,7 @@
 #include "Mapa.h"
 #include "Estados.h"
 #include "Menu.h"
+#include "Musica.h"
 #include <vector>
 
 using namespace std;
@@ -14,7 +15,6 @@ using namespace std;
 #define UPDATE_TICK_TIME 1000/15
 int main()
 {
-
     // Create the main window
     sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1080, 720), "Path of Knowledge");
     window->setFramerateLimit(60);
@@ -24,7 +24,6 @@ int main()
     //Reloj del juego
     sf::Clock clock;
 
-    Menu* menu = new Menu();
     //maquina de estados (0 menu principal)
     Estados * estado = Estados::Instance();
     //creamos personaje
@@ -49,6 +48,13 @@ int main()
     sf::View battle(sf::FloatRect(0, 0, window->getSize().x, window->getSize().y));
     player_view.zoom(0.5f);
 
+    // crear MENUS
+    Menu* menu = new Menu();
+
+    // crear MUSICA
+    Musica musica = Musica();
+
+
 	// Start the game loop
     while (window->isOpen())
     {
@@ -65,11 +71,13 @@ int main()
             {
                 case 0:
                     //MENU INICIO
+                    musica.setActivo(0);
                     menu->menuInicio(window);
                 break;
 
                 case 1:
                     //EN JUEGO
+                    musica.setActivo(1);
 
                     //se mantiene la vista centrada en el personaje
                     player_view.setCenter(jugador->getPosition()->x, jugador->getPosition()->y);
@@ -134,6 +142,8 @@ int main()
 
                 case 2:
                     //COMBATE
+                    musica.setActivo(2);
+
                     window->setView(battle);
                     combate->compruebaFin();
                     combate->input(window);
@@ -147,6 +157,7 @@ int main()
                 break;
 
                 case 3:
+                    musica.setActivo(1);
                     window->setView(battle);
                     menu->menuPause(window);
 
